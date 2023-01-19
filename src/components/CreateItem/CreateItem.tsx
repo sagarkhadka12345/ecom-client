@@ -28,7 +28,7 @@ const CreateItem = () => {
   return (
     <div className="flex  h-[80.5vh] justify-center items-center mx-8 ">
       <form
-        onSubmit={(e) => mutate({ e, name, price, type, image })}
+        onSubmit={(e) => mutate({ e, name, price, types: type, image })}
         method="POST"
         className="border flex flex-col text-indigo-400 p-4 sm:w-[40vw] md:w-[30vw] w-full bg-gray-100 shadow-md "
       >

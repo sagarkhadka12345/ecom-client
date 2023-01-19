@@ -8,13 +8,13 @@ class CreateItemController {
     e,
     name,
     price,
-    type,
+    types,
     image,
   }: {
     e: React.FormEvent<HTMLFormElement>;
     name: string;
     price: string;
-    type: string;
+    types: string;
     image: File | null;
   }) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ class CreateItemController {
       const formData = new FormData();
       formData.append("name", name as string);
       formData.append("price", price as string);
-      formData.append("type", type as string);
+      formData.append("type", types as string);
       formData.append("itemImage", image as File);
 
       await doPost("item/createItem", formData);

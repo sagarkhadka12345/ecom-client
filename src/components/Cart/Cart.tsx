@@ -20,6 +20,7 @@ const CartComponent: React.FC = (): JSX.Element => {
       refetch();
     },
   });
+  console.log(data);
 
   const cart = data && data.data[0].items;
   if (isLoading) return <div>Loading...</div>;
@@ -75,14 +76,13 @@ const CartComponent: React.FC = (): JSX.Element => {
 
           <button
             onClick={() => {
-             CartController.checkOutHandler();
+              CartController.checkOutHandler();
             }}
             className="border-2  p-4 border-indigo-600 bg-indigo-500"
           >
             Check out
           </button>
         </div>
-        {}
       </div>
     </div>
   ) : (

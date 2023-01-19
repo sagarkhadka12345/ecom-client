@@ -92,8 +92,8 @@ const ProductCard = ({
 
   return (
     <div className="mb-4">
-      <div className="cart flex flex-wrap flex-col p-6 sm:p-4 m-2  bg-white rounded-md hover:bg-gray-300  shadow-md ">
-        <div className="w-auto max-w-72">
+      <div className="cart flex flex-wrap flex-col p-6 sm:p-4 m-2  bg-[#E6E6E6] rounded-md hover:bg-amber-200  shadow-md ">
+        <div className="w-auto max-w-72 flex justify-center object-cover ">
           <img
             className="img "
             src={
@@ -109,28 +109,33 @@ const ProductCard = ({
           Seller: &nbsp; {seller}
         </div>
         <div className="flex justify-between p-2 py-4 mb-2 relative">
-          <div className="quantity px-2  tex-indigo-500 ">
-            Quantiy: {quantity}
-            <button
-              className="text-2xl absolute left-[6.5rem] top-[.7rem] border-2 border-gray-200 px-2"
-              onClick={handleClick}
-            >
-              +
-            </button>
+          <div className="quantity px-2  flex gap-4 items-center ">
+            Quantity:
+            <div className="flex border-2 border-zinc-900 rounded-md justify-between items-center px-2 py-1">
+              <button className="" onClick={handleClick}>
+                -
+              </button>
+              <div className="w-8 flex justify-center items-center">
+                {quantity}
+              </div>
+              <button className="" onClick={handleClick}>
+                +
+              </button>
+            </div>
           </div>
           <div className="type px-2 text-indigo-500 ">{type}</div>
         </div>
 
         {user?.username !== "sagarkhadkammm" ? (
           <button
-            className="p-2 w-max bg-indigo-300 hover:bg-indigo-400 hover:text-black mx-auto shadow-lg "
+            className="p-2 w-max border-0 border-b-2 hover:text-black mx-auto "
             onClick={handleAddToCart}
           >
             Set to Cart
           </button>
         ) : (
           <button
-            className="p-2 w-max bg-indigo-300 hover:bg-indigo-400 hover:text-black mx-auto shadow-lg "
+            className="p-2 w-max border-0 border-b-2 hover:text-black mx-auto "
             onClick={() => deleteProduct(productId)}
           >
             Delete

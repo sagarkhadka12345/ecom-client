@@ -1,12 +1,13 @@
 import React from "react";
 
 import { Order as TOrder } from "./Order.types";
-
+import DataTable from "react-data-table-component";
 import moment from "moment";
 import { useQuery } from "react-query";
 
 import { fetchUser } from "../NavBar/NavBarControllers";
 import OrderController from "./OrderController";
+
 const Order = () => {
   const { isLoading, data, isError } = useQuery(
     "Order",
@@ -20,11 +21,40 @@ const Order = () => {
     enabled: true,
     staleTime: 5 * 60 * 10000,
   });
+  const Columns = [
+    {
+      name: "Id",
+      selector: (
+        row: Pick<TOrder, "orderId" | "totalPrice" | "date" | "username">
+      ) => row.orderId,
+      sortable: true,
+    },
+    {
+      name: "Username",
+      selector: (row: TOrder) => row.username,
+    },
+    {
+      name: "Total Price",
+      selector: (row: Pick<TOrder, "orderId" | "totalPrice" | "date">) =>
+        +row.totalPrice,
+      sortable: true,
+    },
+    {
+      name: "Total Items",
+      selector: (row: TOrder) => +row.items.length,
+      sortable: true,
+    },
+    {
+      name: "Inserted",
+      selector: (row: Pick<TOrder, "orderId" | "totalPrice" | "date">) =>
+        moment(+row.date).format("YYYY MM DD"),
+    },
+  ];
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
   return (
     <div className="w-full h-max p-8">
-      <table className="text-xs w-full md:text-base">
+      {/* <table className="text-xs w-full md:text-base">
         <thead>
           <tr>
             <td className="px-1 md:px-4 py-2 bg-gray-400"> Order ID</td>
@@ -69,7 +99,8 @@ const Order = () => {
               </tr>
             ))}
         </tbody>
-      </table>
+      </table> */}
+      {data?.data && <DataTable columns={Columns} data={data?.data} />}
     </div>
   );
 };

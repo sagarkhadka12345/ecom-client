@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useQuery } from "react-query";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Logo } from "../../images";
 
 import { fetchUser } from "./NavBarControllers";
@@ -20,10 +20,14 @@ const NavBar: React.FC = (): JSX.Element => {
     staleTime: 10000 * 60 * 50,
   });
 
+  const route = useLocation();
+  console.log("====================================");
+  console.log(route.pathname);
+  console.log("====================================");
   return (
     <>
-      <nav className="flex sm:py-7 px-8 py-6 text-indigo-900 bg-gray-100 flex-col sm:flex-row ">
-        <div className="flex-1 cursor-pointer my-2  sm:my-0 ml-4 sm:ml-0 p-4 sm:p-2 border-2 border-black w-max sm:border-0">
+      <nav className="flex sm:py-0 px-8 py-0 text-yellow-600 bg-white flex-col sm:flex-row ">
+        <div className="flex-1 cursor-pointer   sm:my-0  sm:ml-0 p-4 sm:p-2 border-2 border-black w-max sm:border-0">
           <Link to={"/"}>
             <div className="w-12 h-12">
               <img src={Logo} height="100%" width={"100%"} />
@@ -38,36 +42,36 @@ const NavBar: React.FC = (): JSX.Element => {
               : setScreenSize("mobile")
           }
         >
-          <div className="w-9 h-1 bg-slate-900 my-1.5 relative duration-200 line1 "></div>
-          <div className="w-9 h-1 bg-slate-900 my-1.5 relative duration-200 line2 "></div>
-          <div className="w-9 h-1 bg-slate-900 my-1.5 relative duration-200 line3"></div>
+          <div className="w-9 h-1 bg-slate-900  relative duration-200 line1 "></div>
+          <div className="w-9 h-1 bg-slate-900  relative duration-200 line2 "></div>
+          <div className="w-9 h-1 bg-slate-900  relative duration-200 line3"></div>
         </div>
         <div
-          className="flex-auto flex justify-between sm:flex-row flex-col py-4 pl-4"
+          className="flex-auto flex justify-between sm:flex-row items-center flex-col  "
           id={screenSize}
         >
-          <div className="my-2 pl-4 sm:my-0 cursor-pointer hover:text-[#7510F7]">
+          <div className="h-full w-24 min-w-max px-1 flex items-center justify-center   cursor-pointer hover:text-white hover:bg-yellow-600">
             <Link to={"/"}>Home</Link>
           </div>
-          <div className="my-2 pl-4 sm:my-0 cursor-pointer hover:text-[#7510F7]">
+          <div className="h-full w-24 min-w-max px-1 flex items-center justify-center   cursor-pointer hover:text-white hover:bg-yellow-600">
             <Link to={"/catalogue"}>Catalogue</Link>
           </div>
           {data?.data.username ? (
             ""
           ) : (
-            <div className="my-2 pl-4 sm:my-0 cursor-pointer hover:text-[#7510F7]">
+            <div className="h-full w-24 min-w-max px-1 flex items-center justify-center   cursor-pointer hover:text-white hover:bg-yellow-600">
               <Link to={"/login"}>login</Link>
             </div>
           )}
           {data?.data.username ? (
             ""
           ) : (
-            <div className="my-2 pl-4 sm:my-0 cursor-pointer hover:text-[#7510F7]">
+            <div className="h-full w-24 min-w-max px-1 flex items-center justify-center   cursor-pointer hover:text-white hover:bg-yellow-600">
               <Link to={"/register"}>Register</Link>
             </div>
           )}
           {data?.data.username ? (
-            <div className="my-2 pl-4 sm:my-0 cursor-pointer hover:text-[#7510F7]">
+            <div className="h-full w-24 min-w-max px-1 flex items-center justify-center   cursor-pointer hover:text-white hover:bg-yellow-600">
               <Link to={"/carts"}>Cart</Link>
             </div>
           ) : (
@@ -76,14 +80,14 @@ const NavBar: React.FC = (): JSX.Element => {
 
           {data?.data.username === "sagarkhadkammm" && (
             <>
-              <div className="my-2 pl-4 sm:my-0 cursor-pointer hover:text-[#7510F7]">
+              <div className="h-full w-24 min-w-max px-1 flex items-center justify-center   cursor-pointer hover:text-white hover:bg-yellow-600">
                 <Link to={"/item"}>Create New Ad</Link>
               </div>
             </>
           )}
 
           {data?.data.username ? (
-            <div className="my-2 pl-4 sm:my-0 cursor-pointer hover:text-[#7510F7]">
+            <div className="h-full w-24 min-w-max px-1 flex items-center justify-center   cursor-pointer hover:text-white hover:bg-yellow-600">
               <Link to={"/orders"}>Orders</Link>
             </div>
           ) : (
@@ -91,13 +95,13 @@ const NavBar: React.FC = (): JSX.Element => {
           )}
 
           {data?.data.username && (
-            <div className="cmy-2 pl-4 sm:my-0 cursor-pointer hover:text-[#7510F7]">
+            <div className="h-full w-24 min-w-max px-1 flex items-center justify-center   cursor-pointer hover:text-white hover:bg-yellow-600">
               {data.data.username}
             </div>
           )}
           {data?.data.username ? (
             <div
-              className="my-2 pl-4 sm:my-0 cursor-pointer hover:text-[#7510F7]s"
+              className="h-full w-24 min-w-max px-1 flex items-center justify-center   cursor-pointer hover:text-white hover:bg-yellow-600"
               onClick={logout}
             >
               Log Out
